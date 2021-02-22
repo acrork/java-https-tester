@@ -1,7 +1,7 @@
 # Java HTTPS Tester
 
 A small program to help you debug HTTPS connection problems with
-JVM-based programs. 
+JVM-based programs.
 
 ## Motivation
 
@@ -26,7 +26,9 @@ Cygwin. There is also a `.bat`` file for Windows.
 
 To create the executable JAR, just run
 
-    shell> lein uberjar
+```bash
+shell> lein uberjar
+```
 
 in the cloned repository. The resulting executable JAR will be in the
 `target` folder.
@@ -35,15 +37,19 @@ in the cloned repository. The resulting executable JAR will be in the
 
 You can simply call `lein run` with a URL to connect to:
 
-    lein run https://www.example.com
+```bash
+lein run https://www.example.com
+```
 
 or run the executable JAR:
 
-    java -jar target/java-https-tester.jar https://www.example.com
+```bash
+java -jar target/java-https-tester.jar https://www.example.com
+```
 
 This program will connect to the server at least two times:
 
-* Once using the Apache HTTP Commons library, 
+* Once using the Apache HTTP Commons library,
 * and once using the built-in classes of the JRE.
 
 It prints the name of a logfile where all information is
@@ -55,9 +61,11 @@ Clojure library [clj-http](https://github.com/dakrone/clj-http). The
 `get` function of that library allows some configurations.  We already
 pass in
 
+```clojure
     {:throw-exceptions true
      :debug true
      :response-interceptor interceptor}
+```
 
 which cannot be overwritten.  The `interceptor` should output some
 logs when you follow redirects.  For other things like proxy
@@ -68,7 +76,9 @@ Pass the configuration map as
 an [EDN](https://github.com/edn-format/edn) formatted string
 parameter:
 
-    java -jar java-https-tester.jar -c '{:proxy-host "127.0.0.1"  :proxy-port 8118}' URL
+```bash
+java -jar java-https-tester.jar -c '{:proxy-host "127.0.0.1"  :proxy-port 8118}' URL
+```
 
 When connecting to the URL the second time using the common Java
 classes, you can control its behavior by setting the appropriate
@@ -77,12 +87,14 @@ system properties.
 For example, you could create extensive SSL debug logging by calling
 the program like this:
 
-    java -Djavax.net.debug=ssl -jar java-https-tester.jar URL
+```bash
+java -Djavax.net.debug=ssl -jar java-https-tester.jar URL
+```
 
-See
-http://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html
+See [Debugging SSL/TLS Connections](
+https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html)
 and
-https://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/JSSERefGuide.html#InstallationAndCustomization
+[Customizing JSSE](https://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/JSSERefGuide.html#InstallationAndCustomization)
 for more.
 
 If the connection could not be established so far, often because of
@@ -113,8 +125,8 @@ Your mileage may vary.
 * Depending on the configuration of the server you are connecting to,
   you may have to install
   the
-  [Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html). Otherwise
-  some ciphers will not be available.
+  [Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html).
+  Otherwise some ciphers will not be available.
 * If you are installing Oracle Java 8 on a developer Linux machine
   using the [webupd8 PPA](https://launchpad.net/~webupd8team), you may
   find out that you did not receive Oracle's changes with an
@@ -124,8 +136,10 @@ Your mileage may vary.
   OpenSSL project. It can validate and output certificates and help a
   lot with debugging connection problems. It does not use the JVM
   though, and is thus a different beast. You often use it like this:
-  
-      openssl s_client -showcerts -connect www.example.com:443
+
+```bash
+openssl s_client -showcerts -connect www.example.com:443
+```
 
 ## Support
 
