@@ -3,7 +3,7 @@
 A small program to help you debug HTTPS connection problems with
 JVM-based programs. 
 
-# Motivation
+## Motivation
 
 In
 [Java 1.8.0_141](http://www.oracle.com/technetwork/java/javase/8u141-relnotes-3720385.html) Oracle
@@ -18,7 +18,7 @@ This program can be used to test and analyze an HTTPS connection
 established by a JVM-based program. You can test your local Java
 installation and your server-settings with this.
 
-# Build
+## Build
 
 You need to install [Leiningen](https://leiningen.org/). Don't worry,
 it's really easy. Just a bash script in your path on Linux, OSX, or
@@ -27,11 +27,11 @@ Cygwin. There is also a `.bat`` file for Windows.
 To create the executable JAR, just run
 
     shell> lein uberjar
-    
+
 in the cloned repository. The resulting executable JAR will be in the
 `target` folder.
 
-# Usage
+## Usage
 
 You can simply call `lein run` with a URL to connect to:
 
@@ -93,7 +93,7 @@ chain information in the log file, too.
 If still no connection can be established, this is often a good hint
 that you should install JCE.
 
-# Hints
+## Hints
 
 Some hints what you want to look for in such a debugging situation.
 Your mileage may vary.
@@ -127,13 +127,25 @@ Your mileage may vary.
   
       openssl s_client -showcerts -connect www.example.com:443
 
-# Support
+## Support
 
 This is not an Acrolinx product. It is a helper tool and provided as
 is. We do not support this program.
 
-# License
+## License
 
-This program is Copyright (c) 2017 by Acrolinx GmbH and published
-under the Apache License v2.0. See the LICENSE file.
+Copyright 2017-present Acrolinx GmbH
 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at:
+
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+For more information visit: [https://www.acrolinx.com](https://www.acrolinx.com)
